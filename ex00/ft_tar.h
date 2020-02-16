@@ -6,7 +6,7 @@
 /*   By: vinguyen <vinguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 00:51:48 by oldurosi          #+#    #+#             */
-/*   Updated: 2020/02/15 21:28:38 by vinguyen         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:29:14 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 *	Unix Standard TAR (UStar) format
 * 	when creating a tar file.
 */
-typedef struct		s_tarHeader
+typedef struct		s_tar_header
 {
 	char			name[100];
 	char			mode[8];
@@ -43,6 +43,6 @@ typedef struct		s_tarHeader
 	char			devMinor[8];
 	char			prefix[155];
 	struct 			mdata *next;
-}					t_tarHeader;
+}					t_tar_header;
 
 #endif
