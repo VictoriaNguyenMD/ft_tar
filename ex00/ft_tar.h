@@ -3,45 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tar.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oldurosi <oldurosi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vinguyen <vinguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 00:51:48 by oldurosi          #+#    #+#             */
-/*   Updated: 2020/02/15 01:27:06 by oldurosi         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:28:38 by vinguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TAR_H
 # define FT_TAR_H
 
+#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
-// #include <exit.h>
-// struct mdata
-// {
-//    char name[255];
-//    FILE *fp;
-//    int size;
-//    int nsize;
-//    int ssize;
-//    struct mdata *next;
-// };
-
-typedef struct		s_mdata
+/* 
+*	The needed data for the 
+*	Unix Standard TAR (UStar) format
+* 	when creating a tar file.
+*/
+typedef struct		s_tarHeader
 {
 	char			name[100];
 	char			mode[8];
-	char			owner[8];
-	char			group[8];
+	char			userID[8];
+	char			groupID[8];
 	char			size[12];
-	char			modified[12];
+	char			modifiedTime[12];
 	char			checksum[8];
-	char			type[1];
-	char			link[100];
-	char			padding[255];
+	char			typeFlag[1];
+	char			linkName[100];
+	char			magic[6]; //"ustar\0"
+	char 			version[2]; //"00"
+	char			userName[32];
+	char			groupName[32];
+	char			devMajor[8];
+	char			devMinor[8];
+	char			prefix[155];
 	struct 			mdata *next;
-}					t_mdata;
+}					t_tarHeader;
 
 #endif
